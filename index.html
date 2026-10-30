@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Defender Mental Health</title>
 <meta name="description" content="Evidence review of burnout, secondary trauma, moral injury and protective affiliation in digital forensics, incident response and security operations: statistics graded by evidence quality, sources, interventions and a leader's checklist.">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%235e3a24'/%3E%3Cpath d='M5 17h6l3-7 4 13 3-6h6' stroke='%23fff' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>/* Design system carried over from the Edge DFIR Toolkit Pages site: same tokens,
    header, tab bar, facet rail, record drawer and search palette. Grades A-D use
@@ -29,15 +29,8 @@
   --code-bg:#312e2a;--shadow:rgba(0,0,0,.35);--shadow-lg:rgba(0,0,0,.55);--ink-2:#ddd8d0;
   --q-a:#c9dbf1;--q-b:#9cb8dc;--q-c:#7697c3;--q-d:#56729a;
   --q-a-ink:#1c1b19;--q-b-ink:#1c1b19;--q-c-ink:#1c1b19;--q-d-ink:#fff;--bar:#c9a184}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
-  --bg:#1e1c1a;--panel:#2a2825;--panel-2:#312e2a;--hover:#38352f;
-  --ink:#f4f1ec;--muted:#bab4aa;--faint:#928b81;--line:#5d5851;--line-soft:#403d38;--field:#7e786f;
-  --accent:#ddc4b0;--accent-hover:#ecd9ca;--accent-soft:#3b2c22;--accent-border:#86664f;--on-accent:#1a1310;
-  --crit:#f28c85;--high:#eaa965;--med:#d9c364;--low:#a6d18c;
-  --conf-strong:#9ec0e0;--conf-mid:#7e94ab;--conf-bg:#253341;--alert-bg:#33261f;
-  --code-bg:#312e2a;--shadow:rgba(0,0,0,.35);--shadow-lg:rgba(0,0,0,.55);--ink-2:#ddd8d0;
-  --q-a:#c9dbf1;--q-b:#9cb8dc;--q-c:#7697c3;--q-d:#56729a;
-  --q-a-ink:#1c1b19;--q-b-ink:#1c1b19;--q-c-ink:#1c1b19;--q-d-ink:#fff;--bar:#c9a184}}
+/* Light by default whatever the OS setting; dark only when chosen with the Theme button. */
+:root{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-padding-top:calc(var(--hdr) + 8px);scrollbar-gutter:stable}
 body{margin:0;background:var(--bg);color:var(--ink);font:var(--fs-base)/1.55 var(--sans);-webkit-text-size-adjust:100%}
@@ -2352,7 +2345,7 @@ function go(h){ if (location.hash === h) route(); else location.hash = h; }
 /* ------------------------------------------------------------------ header height, theme */
 function hdrH(){ var h = document.querySelector('.hdr'); return h ? h.offsetHeight : 118; }
 function setHdr(){ document.documentElement.style.setProperty('--hdr', hdrH() + 'px'); }
-function curTheme(){ var t = document.documentElement.getAttribute('data-theme'); if (t) return t; return window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+function curTheme(){ return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
 function setTheme(t){ document.documentElement.setAttribute('data-theme', t); store('dmh-theme', t); $('themeBtn').setAttribute('aria-label', 'Theme: ' + t + '. Switch to ' + (t === 'dark' ? 'light' : 'dark')); }
 
 /* ------------------------------------------------------------------ build the shell */
